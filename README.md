@@ -8,7 +8,7 @@ Installs the application as a system service (using `upstart` or good old `sysv`
 
 Configruations for Debian-family systems included, patches welcome for other OSes.
 
-For a more comperhensive Rails deployment recipe which makes use of this module, see [`ruy-rails`](https://forge.puppetlabs.com/ruy/rails).
+For a more comperhensive Rails deployment recipe which makes use of this module, see [`deversus-rails`](https://forge.puppetlabs.com/deversus/rails).
 
 ## Optional Dependencies
 

@@ -1,7 +1,7 @@
 {
-  "name": "ruy-puma",
-  "version": "0.1.0",
-  "author": "ruy",
+  "name": "deversus-puma",
+  "version": "0.1.1",
+  "author": "Ruy Asan",
   "summary": "Configure puma servers for Ruby-on-Rails apps",
   "license": "MIT",
   "source": "https://github.com/rubyruy/puppet-puma.git",
