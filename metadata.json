@@ -4,9 +4,9 @@
   "author": "Ruy Asan",
   "summary": "Configure puma servers for Ruby-on-Rails apps",
   "license": "MIT",
-  "source": "https://github.com/rubyruy/puppet-puma.git",
-  "project_page": "https://github.com/rubyruy/puppet-puma",
-  "issues_url": "https://github.com/rubyruy/puppet-puma/issues",
+  "source": "https://github.com/deversus/puppet-puma.git",
+  "project_page": "https://github.com/deversus/puppet-puma",
+  "issues_url": "https://github.com/deversus/puppet-puma/issues",
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
