@@ -1,6 +1,6 @@
 {
   "name": "deversus-puma",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "Ruy Asan",
   "summary": "Configure puma servers for Ruby-on-Rails apps",
   "license": "MIT",
@@ -13,8 +13,8 @@
       "version_range": ">= 4.1.0"
     },
     {
-      "name": "krakatoa-upstart",
-      "version_range": ">= 0.0.1"
+      "name": "deversus-upstart",
+      "version_range": ">= 0.0.2"
     }
   ],
   "tags": ["rails", "puma", "ruby", "nginx", "rvm"],
