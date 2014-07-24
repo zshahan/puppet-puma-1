@@ -50,7 +50,7 @@ A convenience resource for configuring NGINX for the above setup is provided:
 ```puppet
 # Debian default values shown
 puma::nginxconfig {'myapp':
-    server_name     => 'www.myapp.com',
+    server_name     => ['www.myapp.com'],
     public_root     => '/var/www/myapp/current/public',
 }
 ```
