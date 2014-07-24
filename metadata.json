@@ -1,0 +1,17 @@
+{
+  "name": "ruy-puma",
+  "version": "0.1.0",
+  "author": "ruy",
+  "summary": "Manage\b\b\b\b\b\b\b\bSetup\b\b\b\b\b\b\b\bConfigure puma servers for Ruby-on-Rails apps",
+  "license": "MIT",
+  "source": "https://github.com/rubyruy/puppet-puma.git",
+  "project_page": "https://github.com/rubyruy/puppet-puma",
+  "issues_url": "https://github.com/rubyruy/puppet-puma/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_range": ">= 1.0.0"
+    }
+  ]
+}
+
