@@ -16,10 +16,10 @@
   "tags": ["rails", "puma", "ruby", "nginx", "rvm"],
   "operatingsystem_support": [
     {
-      "operatingsystem":"Debian",
+      "operatingsystem":"Debian"
     },
     {
-      "operatingsystem": "Ubuntu",
+      "operatingsystem": "Ubuntu"
     }
    ]
 }
