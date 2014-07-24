@@ -6,9 +6,9 @@ Configure puma servers for Ruby-on-Rails apps.
 
 Installs the application as a system service (using `upstart` or good old `sysv` - `upstart` has the benefit of not requiring a supervisor for restarting rails).
 
-Configruations for Debian-family systems included, patches welcome for other OSes.
+Configurations for Debian-family systems included, patches welcome for other OSes.
 
-For a more comperhensive Rails deployment recipe which makes use of this module, see [`deversus-rails`](https://forge.puppetlabs.com/deversus/rails).
+For a more comprehensive Rails deployment recipe which makes use of this module, see [`deversus-rails`](https://forge.puppetlabs.com/deversus/rails).
 
 ## Optional Dependencies
 
