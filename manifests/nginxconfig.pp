@@ -7,7 +7,7 @@ define puma::nginxconfig(
 
 	$upstream_name = "${app_name}_socket"
 	$vhost_name = $app_name
-	
+
 	nginx::resource::upstream {$upstream_name:
 		ensure 	=> present,
 		members	=> ["unix://$puma_socket_path"],
@@ -27,7 +27,6 @@ define puma::nginxconfig(
 		location 			  => '~ ^/(assets)/',
 		ensure                =>  present,
 		vhost                 =>  $vhost_name,
-		require 			  => [Nginx::Resource::Vhost[$vhost_name]],
 		priority              =>  499,
 		location_custom_cfg   =>  {
 			'access_log'          =>  'off',
@@ -42,7 +41,6 @@ define puma::nginxconfig(
 		location 			=> '/',
 		ensure 				=> present,
 		vhost 				=> $vhost_name,
-		require 			  => [Nginx::Resource::Vhost[$vhost_name]],
 		priority			=> 500,
 		location_custom_cfg => {
 			try_files => ['$uri @rails']
@@ -55,7 +53,6 @@ define puma::nginxconfig(
 		ensure                =>  present,
 		priority              =>  501,
 		vhost                 =>  $vhost_name,
-		require 			  => [Nginx::Resource::Vhost[$vhost_name], Nginx::Resource::Upstream[$upstream_name]],
 		proxy                 =>  "http://${upstream_name}",
 		proxy_read_timeout    =>  '90',
 		location_custom_cfg_append   =>  {
@@ -63,7 +60,7 @@ define puma::nginxconfig(
 			'proxy_set_header'    =>  [
 				'Host $host',
 				'X-Forwarded-For $proxy_add_x_forwarded_for'
-			], 
+			],
 		},
 	}
 
