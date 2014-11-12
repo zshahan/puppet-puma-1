@@ -24,16 +24,22 @@ define puma::nginxconfig(
 	}
 
 	nginx::resource::location { "${vhost_name}:assets":
-		location 			  => '~ ^/(assets)/',
-		ensure                =>  present,
-		vhost                 =>  $vhost_name,
-		priority              =>  499,
-		location_custom_cfg   =>  {
-			'access_log'          =>  'off',
-			'expires'             =>  'max',
-			'add_header'          =>  'Cache-Control "public"',
-			'add_header'          =>  'Etag ""',
-			'gzip_static'         =>  'on',
+		location 			  						 => '~ ^/(assets)/',
+		ensure               				 =>  present,
+		vhost                				 =>  $vhost_name,
+		priority             				 =>  499,
+		location_custom_cfg  				 =>  {
+			'access_log'   =>  'off',
+			'expires'      =>  'max',
+			'add_header'   =>  'Cache-Control "public"',
+			'add_header'   =>  'Etag ""',
+			'gzip_static'  =>  'on',
+		},
+		location_custom_cfg_append	=> {
+			'if' => '($request_filename ~* ^.*?\.(eot)|(ttf)|(woff)|(svg)|(otf)$){
+				add_header Access-Control-Allow-Origin *;
+			}
+			'
 		},
 	}
 
@@ -55,11 +61,13 @@ define puma::nginxconfig(
 		vhost                 =>  $vhost_name,
 		proxy                 =>  "http://${upstream_name}",
 		proxy_read_timeout    =>  '90',
-		location_custom_cfg_append   =>  {
+		location_cfg_append   =>  {
 			'proxy_http_version'  =>  '1.1',
 			'proxy_set_header'    =>  [
 				'Host $host',
-				'X-Forwarded-For $proxy_add_x_forwarded_for'
+				'X-Forwarded-For $proxy_add_x_forwarded_for',
+        # Thought this was needed for SSL but it is causing an infinite loop
+				# 'X-Forwarded-Proto $scheme'
 			],
 		},
 	}
