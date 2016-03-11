@@ -54,8 +54,8 @@ threads <%= @min_threads %>, <%= @max_threads %>
 #
 # The default is “tcp://0.0.0.0:9292”.
 #
-# bind 'tcp://0.0.0.0:9292'
-bind "unix://<%= @puma_socket_path %>"
+bind 'tcp://0.0.0.0:9292'
+#bind "unix://<%= @puma_socket_path %>"
 
 # Instead of “bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'” you
 # can also use the “ssl_bind” option.
