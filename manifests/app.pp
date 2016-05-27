@@ -72,11 +72,9 @@ define puma::app (
 				user           	=> $puma_user,
 				group          	=> $puma_user,
 				chdir          	=> $app_root,
-				env 			=> {
-					'RAILS_ENV' => $rails_env
-				},
-				exec          => "$ruby_exec_prefix bundle exec puma -C $puma_config_path",
-				require			=> File[$puma_config_path],
+				env 		=> @env,
+				exec            => "$ruby_exec_prefix bundle exec puma -C $puma_config_path",
+				require		=> File[$puma_config_path],
 			}
 			$puma_daemonize = false # this is important
 									#  - upstart does NOT play well with doing your own
