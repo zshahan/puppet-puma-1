@@ -8,7 +8,7 @@ define puma::app (
 	$workers 			= $puma::workers,
 	$init_active_record = $puma::init_active_record,
 	$preload_app 		= $puma::preload_app,
-	$rails_env			= $puma::rails_env,
+	$env			= $puma::env,
 	$rvm_ruby			= $puma::rvm_ruby,
 ) {
 	$puma_pid_path		= sprintf($puma::puma_pid_path_spf, $app_name)
@@ -66,13 +66,13 @@ define puma::app (
 			# Fancy upstart job - can respawn dead ruby procs
 			ensure_resource('class', 'upstart')
 			upstart::job { $app_name:
-				description    	=> "$app_name - rails/puma application",
+				description    	=> "$app_name - puma application",
 				respawn        	=> true,
 				respawn_limit  	=> '5 10',
 				user           	=> $puma_user,
 				group          	=> $puma_user,
 				chdir          	=> $app_root,
-				env 		=> @env,
+				env 		=> $env,
 				exec            => "$ruby_exec_prefix bundle exec puma -C $puma_config_path",
 				require		=> File[$puma_config_path],
 			}
