@@ -2,7 +2,7 @@
 # MANAGED BY PUPPET
 # Module:: dsi::puma
 # Start Puma with next command:
-# RAILS_ENV=production bundle exec puma -C ./config/puma.rb
+# RACK_ENV=production bundle exec puma -C ./config/puma.rb
 
 # The directory to operate out of.
 #
@@ -14,7 +14,7 @@ directory '<%= @app_root %>'
 #
 # The default is set to puppet's environment
 #
-environment '<%= @env %>'
+environment '<%= @env['RACK_ENV'] %>'
 
 # Daemonize the server into the background. Highly suggest that
 # this be combined with “pidfile” and “stdout_redirect”.
