@@ -5,6 +5,7 @@ define puma::app (
 	$www_user 			= $puma::www_user,
 	$min_threads 		= $puma::min_threads,
 	$max_threads 		= $puma::max_threads,
+	$port						= $puma::port,
 	$workers 			= $puma::workers,
 	$init_active_record = $puma::init_active_record,
 	$preload_app 		= $puma::preload_app,
