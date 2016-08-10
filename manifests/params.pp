@@ -2,7 +2,8 @@ class puma::params {
 	$puma_user				= 'puma'
 	$min_threads 			= 1
 	$max_threads			= 16
-	$workers 				= 1
+	$port							= 9292
+	$workers 					= 1
 	$init_active_record 	= false
 	$preload_app 			= true
 	$rails_env				= $environment

@@ -3,6 +3,7 @@ class puma (
 	$www_user				= $puma::params::www_user,
 	$min_threads 			= $puma::params::min_threads,
 	$max_threads			= $puma::params::max_threads,
+	$port						= $puma::params::port,
 	$workers 				= $puma::params::workers,
 	$init_active_record 	= $puma::params::init_active_record,
 	$preload_app 			= $puma::params::preload_app,
