@@ -17,5 +17,6 @@ class puma (
 	$rails_env				= $puma::params::rails_env,
 	$rvm_ruby				= $puma::params::rvm_ruby,
 	$service_type			= $puma::params::service_type,
+        $restart_command          = $puma::params::restart_command
 ) inherits puma::params{
 }

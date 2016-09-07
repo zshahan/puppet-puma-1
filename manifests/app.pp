@@ -11,6 +11,7 @@ define puma::app (
 	$preload_app 		= $puma::preload_app,
 	$env			= $puma::env,
 	$rvm_ruby			= $puma::rvm_ruby,
+        $restart_command        = $puma::restart_command,
 ) {
 	$puma_pid_path		= sprintf($puma::puma_pid_path_spf, $app_name)
 	$puma_socket_path	= sprintf($puma::puma_socket_path_spf, $app_name)

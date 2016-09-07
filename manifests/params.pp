@@ -8,6 +8,7 @@ class puma::params {
 	$preload_app 			= true
 	$rails_env				= $environment
 	$rvm_ruby				= false
+        $restart_command    = 'puma'
 
 	if $nx_daemon_user {
 		$www_user = $nx_daemon_user # Assume nginx user if available
