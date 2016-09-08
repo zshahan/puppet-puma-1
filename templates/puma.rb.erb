@@ -34,7 +34,7 @@ pidfile "<%= @puma_pid_path %>"
 # (“append”) specifies whether the output is appended, the default is
 # “false”.
 #
-stdout_redirect "<%= @puma_stdout_log_path %>", "<%= @puma_stderr_log_path %>"
+stdout_redirect "<%= @puma_stderr_log_path %>", "<%= @puma_stdout_log_path %>"
 
 # Disable request logging.
 #
