@@ -76,8 +76,7 @@ define puma::app (
 				env 		=> $env,
 				exec            => "$ruby_exec_prefix bundle exec puma -C $puma_config_path",
 				require		=> File[$puma_config_path],
-                                pre_start       => [ "sudo mkdir -p $puma_pid_path",
-                                                     "sudo chown -R $puma_user:$puma_user $puma_pid_path" ]
+                                pre_start       => "sudo mkdir -p $puma_pid_path\nsudo chown -R $puma_user:$puma_user $puma_pid_path"
 			}
 			$puma_daemonize = false # this is important
 									#  - upstart does NOT play well with doing your own
