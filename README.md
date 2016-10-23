@@ -34,7 +34,7 @@ puma::app {'myapp':
     init_active_record => false,
     preload_app        => true,
     rails_env          => 'production',
-    rvm_ruby           => 'ruby-2.0.0-p0,
+    rvm_ruby           => 'ruby-2.0.0-p0',
     restart_command    => 'puma',
 }
 

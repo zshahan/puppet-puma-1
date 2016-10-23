@@ -14,6 +14,7 @@ define puma::app (
     $restart_command    = $puma::restart_command,
 ) {
 	$puma_pid_path		= sprintf($puma::puma_pid_path_spf, $app_name)
+        $puma_pid_dir           = dirname($puma_pid_path)
 	$puma_socket_path	= sprintf($puma::puma_socket_path_spf, $app_name)
 	$puma_config_path	= sprintf($puma::puma_config_path_spf, $app_name)
 	$puma_stdout_log_path = sprintf($puma::puma_stdout_log_path_spf, $app_name)
@@ -61,7 +62,6 @@ define puma::app (
 		ensure => directory,
 		mode => 'a+x',
 	})
-	
 
 	case $puma::service_type {
 		'upstart': {
@@ -77,6 +77,7 @@ define puma::app (
 				env 		=> $env,
 				exec            => "$ruby_exec_prefix bundle exec puma -C $puma_config_path",
 				require		=> File[$puma_config_path],
+                                pre_start       => "sudo mkdir -p $puma_pid_dir\nsudo chown -R $puma_user:$puma_user $puma_pid_dir\n"
 			}
 			$puma_daemonize = false # this is important
 									#  - upstart does NOT play well with doing your own
