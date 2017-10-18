@@ -110,9 +110,30 @@ define puma::app (
       }
       $puma_daemonize = true
     }
+    'systemd': {
+      file { 'systemd_config':
+        content => template('puma/systemd.erb'),
+        path    => "/etc/systemd/system/${app_name}.service",
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0755',
+      }
+
+      service { $app_name:
+        ensure => running,
+        enable => true,
+        require => [
+          File[$systemd_config],
+          User[$puma_user],
+          File[$puma_stdout_log_path],
+          File[$puma_stderr_log_path],
+          File[$puma_config_path],
+        ]
+      }
+    }
     default: {
       fail("${puma::service_type} is an unknown service type. \
-           Only know sysv and upstart.")
+           Only know sysv, upstart, and systemd.")
     }
   }
 

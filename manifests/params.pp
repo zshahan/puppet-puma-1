@@ -29,7 +29,11 @@ class puma::params {
       }
       case $::operatingsystem {
         'Ubuntu': {
-          $service_type   = 'upstart'
+          if $::operatingsystemmajrelease >= '15.04' {
+            $service_type   = 'systemd'
+          } else {
+            $service_type   = 'upstart'
+          }
         }
         default: {
           $service_type   = 'sysv'
