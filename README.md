@@ -11,8 +11,10 @@ Configurations for Debian-family systems included, patches welcome for other OSe
 For a more comprehensive Rails deployment recipe which makes use of this module, see [`deversus-rails`](https://forge.puppetlabs.com/deversus/rails).
 
 ## Dependencies
+The following gems should be installed prior to use of the `puma::app` resource:
 
 * puma
+* bundler
 
 ## Optional Dependencies
 
