@@ -1,6 +1,6 @@
 {
   "name": "deversus-puma",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "author": "Deversus Software",
   "summary": "Configure puma servers for Ruby-on-Rails apps",
   "license": "MIT",
