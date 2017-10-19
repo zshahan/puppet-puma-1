@@ -15,3 +15,6 @@ tmtags
 tags
 
 pkg/
+
+vendor/
+Gemfile*.lock
