@@ -1,6 +1,5 @@
 version: 2
 
-# CI
 jobs:
   test-puppet3: &test_setup
     working_directory: ~/puppet-puma
