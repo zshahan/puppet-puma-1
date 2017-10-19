@@ -57,7 +57,7 @@ define puma::app (
     group  => $www_user,
     mode   => 'ug=rwxs,o-o',
   }
-  
+
   # For the rest, just ensure reachable
   ensure_resource('file', $other_conf_dirs, {
     ensure => directory,
