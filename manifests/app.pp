@@ -120,10 +120,10 @@ define puma::app (
       }
 
       service { $app_name:
-        ensure => running,
-        enable => true,
+        ensure  => running,
+        enable  => true,
         require => [
-          File[$systemd_config],
+          File['systemd_config'],
           User[$puma_user],
           File[$puma_stdout_log_path],
           File[$puma_stderr_log_path],
