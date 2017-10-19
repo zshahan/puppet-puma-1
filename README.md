@@ -4,11 +4,15 @@
 
 Configure puma servers for Ruby-on-Rails apps.
 
-Installs the application as a system service (using `upstart` or good old `sysv` - `upstart` has the benefit of not requiring a supervisor for restarting rails).
+Configures the application as a system service (`upstart`, `systemd`, or good old `sysv`).
 
 Configurations for Debian-family systems included, patches welcome for other OSes.
 
 For a more comprehensive Rails deployment recipe which makes use of this module, see [`deversus-rails`](https://forge.puppetlabs.com/deversus/rails).
+
+## Dependencies
+
+* puma
 
 ## Optional Dependencies
 
@@ -40,7 +44,7 @@ puma::app {'myapp':
 
 ```
 
-This would install a service called `myapp` (in `/etc/init` if `upstart` is used,  `/etc/init.d` otherwise). Socket and PID files will be put in `/var/run/myapp/`. Log files will be put in `/var/log/myapp.puma.stdout.log` etc.
+This would install a service called `myapp` (in `/etc/init` if `upstart` is used,  `/etc/systemd/system/` ,or `/etc/init.d` for init). Socket and PID files will be put in `/var/run/myapp/`. Log files will be put in `/var/log/myapp.puma.stdout.log` etc.
 
 An RVM ruby environment for `ruby-2.0.0-p0` will be installed if needed and used to launch puma. (with `rvm_ruby => false`, system ruby will be used)
 
