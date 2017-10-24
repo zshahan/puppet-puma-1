@@ -37,6 +37,6 @@ workflows:
   version: 2
   test-workflow:
     jobs:
-      - test-puppet3:
-      - test-puppet4:
-      - test-puppet5:
+      - test-puppet3
+      - test-puppet4
+      - test-puppet5
