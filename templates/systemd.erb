@@ -5,9 +5,18 @@
 Description=<%= @app_name %> - puma application
 
 [Service]
-ExecStart=/usr/local/bin/bundle exec puma -C <%= @puma_config_path %>
-Group=<%= @puma_user %>
-PIDFile=<%= @puma_pid_path %>
-Type=forking
-User=<%= @puma_user %>
+Type=simple
 WorkingDirectory=<%= @app_root %>
+PIDFile=<%= @puma_pid_path %>
+User=<%= @puma_user %>
+Group=<%= @puma_user %>
+
+# Ensure directory for pid file
+ExecStartPre=/usr/bin/mkdir -p <@puma_pid_path %>
+
+# The command to start puma
+ExecStart=/usr/local/bin/bundle exec puma -C <%= @puma_config_path %>
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
