@@ -12,7 +12,7 @@ User=<%= @puma_user %>
 Group=<%= @puma_user %>
 
 # Ensure directory for pid file
-ExecStartPre=/usr/bin/mkdir -p <@puma_pid_path %>
+ExecStartPre=/usr/bin/mkdir -p <%= @puma_pid_path %>
 
 # The command to start puma
 ExecStart=/usr/local/bin/bundle exec puma -C <%= @puma_config_path %>
