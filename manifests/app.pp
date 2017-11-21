@@ -118,12 +118,18 @@ define puma::app (
         group   => 'root',
         mode    => '0755',
       }
-
+      file { 'pid_directory':
+        ensure => directory,
+        path   => $puma_pid_dir,
+        owner  => $puma_user,
+        group  => $puma_user,
+      }
       service { $app_name:
         ensure  => running,
         enable  => true,
         require => [
           File['systemd_config'],
+          File['pid_directory'],
           User[$puma_user],
           File[$puma_stdout_log_path],
           File[$puma_stderr_log_path],
