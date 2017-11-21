@@ -7,6 +7,7 @@ Description=<%= @app_name %> - puma application
 [Service]
 Type=forking
 WorkingDirectory=<%= @app_root %>
+RuntimeDirectory=<%= @app_name %>
 PIDFile=<%= @puma_pid_path %>
 User=<%= @puma_user %>
 Group=<%= @puma_user %>

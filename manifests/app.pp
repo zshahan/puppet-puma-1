@@ -116,7 +116,7 @@ define puma::app (
         path    => "/etc/systemd/system/${app_name}.service",
         owner   => 'root',
         group   => 'root',
-        mode    => '0755',
+        mode    => '0644',
       }
       service { $app_name:
         ensure  => running,
