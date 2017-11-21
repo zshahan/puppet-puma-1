@@ -124,7 +124,6 @@ define puma::app (
         require => [
           User[$puma_user],
           File['systemd_config'],
-          File[$pid_dirs],
           File[$puma_stdout_log_path],
           File[$puma_stderr_log_path],
           File[$puma_config_path],
