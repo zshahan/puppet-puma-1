@@ -116,15 +116,14 @@ define puma::app (
         path    => "/etc/systemd/system/${app_name}.service",
         owner   => 'root',
         group   => 'root',
-        mode    => '0755',
+        mode    => '0644',
       }
-
       service { $app_name:
         ensure  => running,
         enable  => true,
         require => [
-          File['systemd_config'],
           User[$puma_user],
+          File['systemd_config'],
           File[$puma_stdout_log_path],
           File[$puma_stderr_log_path],
           File[$puma_config_path],
