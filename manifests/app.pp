@@ -165,7 +165,7 @@ define puma::app (
         mode    => '0755',
         require => File["${app_root}/shared/bin"]
       }
-      file { ["${app_root}/shared/bin","${app_root}/shared","${app_root}/shared/tmp"]:
+      file { ["${app_root}/shared/bin","${app_root}/shared"]:
         ensure => directory,
         owner  => $puma_user,
         group  => $puma_user,
