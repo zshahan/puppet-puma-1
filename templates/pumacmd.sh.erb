@@ -1,0 +1,8 @@
+#! /bin/sh
+
+BASE=<%= @app_root %>
+
+export PATH=$BASE/shared/bundle/bin:/usr/local/rvm/rubies/<%= @rvm_ruby %>/bin/:$PATH
+
+cd $BASE/current
+$BASE/.rvm/gems/<%= @rvm_ruby %>/@<%= @app_name %>//bin/bundle exec pumactl -F $BASE/shared/puma.rb -S $BASE/shared/tmp/pids/puma.state $1

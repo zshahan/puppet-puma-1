@@ -3,18 +3,22 @@
 
 [Unit]
 Description=<%= @app_name %> - puma application
+After=network.target
 
 [Service]
-Type=forking
-WorkingDirectory=<%= @app_root %>
+Type=simple
+WorkingDirectory=<%= @app_root %>/current
 RuntimeDirectory=<%= @app_name %>
 PIDFile=<%= @puma_pid_path %>
 User=<%= @puma_user %>
 Group=<%= @puma_user %>
 
 # The command to start puma
-ExecStart=/usr/local/bin/bundle exec puma -C <%= @puma_config_path %>
-Restart=on-failure
+ExecStart=<%= @app_root %>/shared/bin/start.sh
+ExecStop=<%= @app_root %>/shared/bin/stop.sh
+ExecRestart=<%= @app_root %>/shared/bin/restart.sh
+ExecReload=<%= @app_root %>/shared/bin/reload.sh
+Restart=always
 
 [Install]
 WantedBy=multi-user.target

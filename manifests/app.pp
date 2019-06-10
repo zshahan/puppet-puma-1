@@ -130,6 +130,36 @@ define puma::app (
           File[$puma_config_path],
         ]
       }
+      file { "${app_root}/shared/bin/start.sh":
+        content => "#!/bin/sh\n\n${app_root}/shared/bin/pumacmd.sh start",
+        owner   => $puma_user,
+        group   => $puma_user,
+        mode    => '0755',
+      }
+      file { "${app_root}/shared/bin/stop.sh":
+        content => "#!/bin/sh\n\n${app_root}/shared/bin/pumacmd.sh stop",
+        owner   => $puma_user,
+        group   => $puma_user,
+        mode    => '0755',
+      }
+      file { "${app_root}/shared/bin/restart.sh":
+        content => "#!/bin/sh\n\n${app_root}/shared/bin/pumacmd.sh restart",
+        owner   => $puma_user,
+        group   => $puma_user,
+        mode    => '0755',
+      }
+      file { "${app_root}/shared/bin/reload.sh":
+        content => "#!/bin/sh\n\n${app_root}/shared/bin/pumacmd.sh reload",
+        owner   => $puma_user,
+        group   => $puma_user,
+        mode    => '0755',
+      }
+      file { "${app_root}/shared/bin/pumacmd.sh":
+        content => template('puma/pumacmd.sh.erb'),
+        owner   => $puma_user,
+        group   => $puma_user,
+        mode    => '0755',
+      }
     }
     default: {
       fail("${puma::service_type} is an unknown service type. \
