@@ -8,13 +8,15 @@
 #
 # The default is the current directory.
 #
-directory '<%= @app_root %>'
+directory '<%= @app_root %>/current'
+
+rackup '<%= @app_root %>/current/config.ru'
 
 # Set the environment in which the rack's app will run.
 #
 # The default is set to puppet's environment
 #
-environment '<%= @env['RACK_ENV'] %>'
+environment '<%= @env %>'
 
 # Daemonize the server into the background. Highly suggest that
 # this be combined with “pidfile” and “stdout_redirect”.
@@ -28,7 +30,7 @@ pidfile "<%= @puma_pid_path %>"
 # Use “path” as the file to store the server info state. This is
 # used by “pumactl” to query and control the server.
 #
-# state_path "#{application_shared_path}/tmp/pids/puma.state"
+state_path "<%= @puma_pid_dir %>/puma.state"
 
 # Redirect STDOUT and STDERR to files specified. The 3rd parameter
 # (“append”) specifies whether the output is appended, the default is
@@ -99,6 +101,12 @@ preload_app!
 #   puts 'On worker boot...'
 # end
 
+<% if @on_restart %>
+on_restart do
+  puts "Refreshing Gemfile"
+  ENV["BUNDLE_GEMFILE"] = "<%= @app_root %>/current/Gemfile"
+end
+<% end %>
 
 <% if @init_active_record %>
 on_worker_boot do

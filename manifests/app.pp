@@ -13,7 +13,7 @@ define puma::app (
   $env                = $puma::env,
   $rvm_ruby           = $puma::rvm_ruby,
   $restart_command    = $puma::restart_command,
-  $on_restart         = undef
+  $on_restart         = false,
 ) {
   $puma_pid_path        = sprintf($puma::puma_pid_path_spf, $app_name)
   $puma_pid_dir         = dirname($puma_pid_path)
