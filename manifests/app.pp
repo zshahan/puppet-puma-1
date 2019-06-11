@@ -152,7 +152,7 @@ define puma::app (
         require => File["${app_root}/shared/bin"]
       }
       file { "${app_root}/shared/bin/reload.sh":
-        content => "#!/bin/sh\n\n${app_root}/shared/bin/pumacmd.sh reload",
+        content => "#!/bin/sh\n\n${app_root}/shared/bin/pumacmd.sh phased-restart",
         owner   => $puma_user,
         group   => $puma_user,
         mode    => '0755',
