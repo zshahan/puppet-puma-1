@@ -74,13 +74,13 @@ bind 'tcp://0.0.0.0:<%= @port %>'
 # end
 
 # Load the restart plugin
-plugin 'tmp_restart'
+#plugin 'tmp_restart'
 
 # Command to use to restart puma. This should be just how to
 # load puma itself (ie. 'ruby -Ilib bin/puma'), not the arguments
 # to puma, as those are the same as the original process.
 #
-restart_command "<%= @restart_command %>"
+#restart_command "<%= @restart_command %>"
 
 # === Cluster mode ===
 
