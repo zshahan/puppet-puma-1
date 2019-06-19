@@ -7,6 +7,7 @@ define puma::app (
   $min_threads        = $puma::min_threads,
   $max_threads        = $puma::max_threads,
   $port               = $puma::port,
+  $bind_ip            = $puma::bind_ip,
   $workers            = $puma::workers,
   $init_active_record = $puma::init_active_record,
   $preload_app        = $puma::preload_app,
@@ -14,6 +15,7 @@ define puma::app (
   $rvm_ruby           = $puma::rvm_ruby,
   $restart_command    = $puma::restart_command,
   $on_restart         = false,
+  $puma_log_append    = false
 ) {
   $puma_pid_path        = sprintf($puma::puma_pid_path_spf, $app_name)
   $puma_pid_dir         = dirname($puma_pid_path)
@@ -130,6 +132,8 @@ define puma::app (
           File[$puma_config_path],
         ]
       }
+      $puma_daemonize = false
+
       file { "${app_root}/shared/bin/start.sh":
         content => "#!/bin/sh\n\n${app_root}/shared/bin/pumacmd.sh start",
         owner   => $puma_user,

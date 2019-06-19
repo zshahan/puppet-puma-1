@@ -36,7 +36,7 @@ state_path "<%= @puma_pid_dir %>/puma.state"
 # (“append”) specifies whether the output is appended, the default is
 # “false”.
 #
-stdout_redirect "<%= @puma_stderr_log_path %>", "<%= @puma_stdout_log_path %>"
+stdout_redirect "<%= @puma_stderr_log_path %>", "<%= @puma_stdout_log_path %>", "<%= @puma_log_append %>"
 
 # Disable request logging.
 #
@@ -56,7 +56,7 @@ threads <%= @min_threads %>, <%= @max_threads %>
 #
 # The default is “tcp://0.0.0.0:9292”.
 #
-bind 'tcp://0.0.0.0:<%= @port %>'
+bind 'tcp://<%= @bind_ip %>:<%= @port %>'
 #bind "unix://<%= @puma_socket_path %>"
 
 # Instead of “bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'” you
@@ -90,6 +90,8 @@ workers <%= @workers %>
 
 <% if @preload_app %>
 preload_app!
+<% else %>
+prune_bundler
 <% end %>
 
 # Code to run when a worker boots to setup the process before booting
