@@ -64,6 +64,8 @@ define puma::app (
   # For the rest, just ensure reachable
   ensure_resource('file', $other_conf_dirs, {
     ensure => directory,
+    owner  => $puma_user,
+    group  => $www_user,
     mode => 'a+x',
   })
 
@@ -175,13 +177,6 @@ define puma::app (
         group   => $puma_user,
         mode    => '0755',
         require => File["${app_root}/shared"]
-      }
-      file { ["${app_root}/shared"]:
-        ensure  => directory,
-        owner   => $puma_user,
-        group   => $puma_user,
-        mode    => '0755',
-        require => File[$app_root]
       }
     }
     default: {

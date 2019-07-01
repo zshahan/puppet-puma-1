@@ -22,8 +22,8 @@ class puma::params {
       $puma_pid_path_spf    = '/var/run/%s/puma.pid'
       $puma_socket_path_spf  = '/var/run/%s/puma.socket'
       $puma_config_path_spf  = '/etc/%s/puma.rb'
-      $puma_stdout_log_path_spf = '/var/log/%s.puma.stdout.log'
-      $puma_stderr_log_path_spf = '/var/log/%s.puma.stderr.log'
+      $puma_stdout_log_path_spf = '/var/log/puma/%s.puma.stdout.log'
+      $puma_stderr_log_path_spf = '/var/log/puma/%s.puma.stderr.log'
       $init_script_spf    = '/etc/init.d/%s'
       unless $www_user {
         $www_user       = 'www-data' # generic debian web-server user
