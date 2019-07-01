@@ -206,15 +206,11 @@ define puma::app (
   file { "/usr/local/rvm/rubies/${rvm_ruby}/bin/executable-hooks-uninstaller":
     ensure => link,
     target => "/usr/local/rvm/gems/${rvm_ruby}@${app_name}/wrappers/executable-hooks-uninstaller",
-    owner  => $puma_user,
-    group  => $puma_user,
   }
 
   file { "/usr/local/rvm/rubies/${rvm_ruby}/bin/ruby_executable_hooks":
     ensure => link,
     target => "/usr/local/rvm/gems/${rvm_ruby}@${app_name}/bin/ruby_executable_hooks",
-    owner  => $puma_user,
-    group  => $puma_user,
   }
 
 }
