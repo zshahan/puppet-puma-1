@@ -203,14 +203,21 @@ define puma::app (
     mode   => '0666'
   }
 
+  exec { 'symlink ruby_executable_hooks 1':
+    command => "ln -s /usr/local/rvm/gems/${rvm_ruby}@${app_name}/bin/ruby_executable_hooks /usr/local/rvm/rubies/${rvm_ruby}/bin/ruby_executable_hooks",
+    onlyif  => "test -f /usr/local/rvm/gems/${rvm_ruby}@${app_name}/bin/ruby_executable_hooks",
+    path    => '/usr/bin:/usr/sbin:/bin',
+  }
+
+  exec { 'symlink ruby_executable_hooks 2':
+    command => "ln -s /usr/local/rvm/gems/${rvm_ruby}@${app_name}/wrappers/ruby_executable_hooks /usr/local/rvm/rubies/${rvm_ruby}/bin/ruby_executable_hooks",
+    onlyif  => "test -f /usr/local/rvm/gems/${rvm_ruby}@${app_name}/wrappers/ruby_executable_hooks",
+    path    => '/usr/bin:/usr/sbin:/bin',
+  }
+
   file { "/usr/local/rvm/rubies/${rvm_ruby}/bin/executable-hooks-uninstaller":
     ensure => link,
     target => "/usr/local/rvm/gems/${rvm_ruby}@${app_name}/wrappers/executable-hooks-uninstaller",
-  }
-
-  file { "/usr/local/rvm/rubies/${rvm_ruby}/bin/ruby_executable_hooks":
-    ensure => link,
-    target => "/usr/local/rvm/gems/${rvm_ruby}@${app_name}/bin/ruby_executable_hooks",
   }
 
 }
