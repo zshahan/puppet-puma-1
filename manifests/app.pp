@@ -215,6 +215,13 @@ define puma::app (
     path    => '/usr/bin:/usr/sbin:/bin',
   }
 
+  exec { 'remove bad links':
+    command => "cd /usr/local/rvm/rubies/${rvm_ruby}/bin && find -xtype l -delete",
+    onlyif  => "cd /usr/local/rvm/rubies/${rvm_ruby}/bin && find -xtype l",
+    path    => '/usr/bin:/usr/sbin:/bin',
+    notify  => Exec['symlink ruby_executable_hooks 1','symlink ruby_executable_hooks 2']
+  }
+
   file { "/usr/local/rvm/rubies/${rvm_ruby}/bin/executable-hooks-uninstaller":
     ensure => link,
     target => "/usr/local/rvm/gems/${rvm_ruby}@${app_name}/wrappers/executable-hooks-uninstaller",
