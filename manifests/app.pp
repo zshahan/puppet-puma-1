@@ -216,8 +216,8 @@ define puma::app (
   }
 
   exec { 'remove bad links':
-    command => "cd /usr/local/rvm/rubies/${rvm_ruby}/bin && find -xtype l -delete",
-    onlyif  => "cd /usr/local/rvm/rubies/${rvm_ruby}/bin && find -xtype l",
+    command => "find /usr/local/rvm/rubies/${rvm_ruby}/bin/. -xtype l -delete",
+    onlyif  => "find /usr/local/rvm/rubies/${rvm_ruby}/bin/. -xtype l",
     path    => '/usr/bin:/usr/sbin:/bin',
     notify  => Exec['symlink ruby_executable_hooks 1','symlink ruby_executable_hooks 2']
   }
