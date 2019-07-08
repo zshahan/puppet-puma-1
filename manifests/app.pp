@@ -203,28 +203,10 @@ define puma::app (
     mode   => '0666'
   }
 
-  exec { 'symlink ruby_executable_hooks 1':
-    command => "ln -s /usr/local/rvm/gems/${rvm_ruby}@${app_name}/bin/ruby_executable_hooks /usr/local/rvm/rubies/${rvm_ruby}/bin/ruby_executable_hooks",
-    onlyif  => "test -f /usr/local/rvm/gems/${rvm_ruby}@${app_name}/bin/ruby_executable_hooks",
-    path    => '/usr/bin:/usr/sbin:/bin',
-  }
-
-  exec { 'symlink ruby_executable_hooks 2':
-    command => "ln -s /usr/local/rvm/gems/${rvm_ruby}@${app_name}/wrappers/ruby_executable_hooks /usr/local/rvm/rubies/${rvm_ruby}/bin/ruby_executable_hooks",
-    onlyif  => "test -f /usr/local/rvm/gems/${rvm_ruby}@${app_name}/wrappers/ruby_executable_hooks",
-    path    => '/usr/bin:/usr/sbin:/bin',
-  }
-
-  #exec { 'remove bad links':
-  #  command => "find /usr/local/rvm/rubies/${rvm_ruby}/bin/. -xtype l -delete",
-  #  onlyif  => "find /usr/local/rvm/rubies/${rvm_ruby}/bin/. -xtype l",
-  #  path    => '/usr/bin:/usr/sbin:/bin',
-  #  notify  => Exec['symlink ruby_executable_hooks 2']
-  #}
-
-  file { "/usr/local/rvm/rubies/${rvm_ruby}/bin/executable-hooks-uninstaller":
-    ensure => link,
-    target => "/usr/local/rvm/gems/${rvm_ruby}@${app_name}/wrappers/executable-hooks-uninstaller",
+  file { "/usr/local/rvm/rubies/${rvm_ruby}":
+    user    => 'root',
+    group   => 'rvm',
+    recurse => true
   }
 
 }
