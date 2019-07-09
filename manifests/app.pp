@@ -207,10 +207,9 @@ define puma::app (
     owner   => 'root',
     group   => 'rvm',
     recurse => true,
-
   }
 
-  file { "/usr/local/rvm/rubies/${rvm_ruby}/lib/ruby":
+  file { "/usr/local/rvm/rubies/${rvm_ruby}/lib/ruby/gems":
     mode    => '0775',
     recurse => true
   }
