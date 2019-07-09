@@ -206,6 +206,12 @@ define puma::app (
   file { "/usr/local/rvm/rubies/${rvm_ruby}":
     owner   => 'root',
     group   => 'rvm',
+    recurse => true,
+
+  }
+
+  file { "/usr/local/rvm/rubies/${rvm_ruby}/lib/ruby":
+    mode    => '0775',
     recurse => true
   }
 
