@@ -209,10 +209,4 @@ define puma::app (
     recurse => true
   }
 
-  exec { 'remove bad links':
-    command => "find /usr/local/rvm/rubies/${rvm_ruby}/bin/. -type l -delete",
-    onlyif  => "find /usr/local/rvm/rubies/${rvm_ruby}/bin/. -type l",
-    path    => '/usr/bin:/usr/sbin:/bin',
-  }
-
 }
