@@ -16,7 +16,7 @@ Group=<%= @puma_user %>
 # The command to start puma
 ExecStart=<%= @app_root %>/shared/bin/start.sh
 ExecStop=<%= @app_root %>/shared/bin/stop.sh
-ExecRestart=<%= @app_root %>/shared/bin/restart.sh
+# ExecRestart=<%= @app_root %>/shared/bin/restart.sh
 ExecReload=<%= @app_root %>/shared/bin/reload.sh
 Restart=always
 
