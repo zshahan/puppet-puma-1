@@ -19,5 +19,8 @@ class puma (
   $rvm_ruby                 = $puma::params::rvm_ruby,
   $service_type             = $puma::params::service_type,
   $restart_command          = $puma::params::restart_command
+  $service_ensure           = $puma::params::service_ensure
+  $service_enable           = $puma::params::service_enable
+  $worker_boot_timeout      = $puma::params::worker_boot_timeout
 ) inherits puma::params{
 }
