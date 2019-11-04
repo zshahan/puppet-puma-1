@@ -1,23 +1,24 @@
 # puma::app
 define puma::app (
-  $app_name           = $title,
-  $app_root           = sprintf($puma::app_root_spf, $title),
-  $puma_user          = $puma::puma_user,
-  $www_user           = $puma::www_user,
-  $min_threads        = $puma::min_threads,
-  $max_threads        = $puma::max_threads,
-  $port               = $puma::port,
-  $bind_ip            = $puma::bind_ip,
-  $workers            = $puma::workers,
-  $init_active_record = $puma::init_active_record,
-  $preload_app        = $puma::preload_app,
-  $env                = $puma::env,
-  $rvm_ruby           = $puma::rvm_ruby,
-  $restart_command    = $puma::restart_command,
-  $on_restart         = false,
-  $puma_log_append    = false,
-  $service_ensure     = running,
-  $service_enable     = true
+  $app_name            = $title,
+  $app_root            = sprintf($puma::app_root_spf, $title),
+  $puma_user           = $puma::puma_user,
+  $www_user            = $puma::www_user,
+  $min_threads         = $puma::min_threads,
+  $max_threads         = $puma::max_threads,
+  $port                = $puma::port,
+  $bind_ip             = $puma::bind_ip,
+  $workers             = $puma::workers,
+  $init_active_record  = $puma::init_active_record,
+  $preload_app         = $puma::preload_app,
+  $env                 = $puma::env,
+  $rvm_ruby            = $puma::rvm_ruby,
+  $restart_command     = $puma::restart_command,
+  $on_restart          = false,
+  $puma_log_append     = false,
+  $service_ensure      = running,
+  $service_enable      = true,
+  $worker_boot_timeout = undef
 ) {
   $puma_pid_path        = sprintf($puma::puma_pid_path_spf, $app_name)
   $puma_pid_dir         = dirname($puma_pid_path)
