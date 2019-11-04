@@ -11,6 +11,9 @@ class puma::params {
   $rails_env          = $environment
   $rvm_ruby           = false
   $restart_command    = 'puma'
+  $service_ensure      = running
+  $service_enable      = true
+  $worker_boot_timeout = undef
 
   if $::nx_daemon_user {
     $www_user = $::nx_daemon_user # Assume nginx user if available
