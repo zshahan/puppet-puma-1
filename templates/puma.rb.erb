@@ -89,8 +89,9 @@ bind 'tcp://<%= @bind_ip %>:<%= @port %>'
 workers <%= @workers %>
 
 # Worker timeout
-worker_boot_timeout 120
-
+<% if @worker_boot_timeout %>
+worker_boot_timeout <%= @worker_boot_timeout %>
+<% end %>
 <% if @preload_app %>
 preload_app!
 <% else %>
