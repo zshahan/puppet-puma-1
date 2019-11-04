@@ -16,9 +16,9 @@ define puma::app (
   $restart_command     = $puma::restart_command,
   $on_restart          = false,
   $puma_log_append     = false,
-  $service_ensure      = running,
-  $service_enable      = true,
-  $worker_boot_timeout = undef
+  $service_ensure      = $puma::service_ensure,
+  $service_enable      = $puma::service_enable,
+  $worker_boot_timeout = $puma::worker_boot_timeout
 ) {
   $puma_pid_path        = sprintf($puma::puma_pid_path_spf, $app_name)
   $puma_pid_dir         = dirname($puma_pid_path)
