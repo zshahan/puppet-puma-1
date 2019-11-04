@@ -15,7 +15,9 @@ define puma::app (
   $rvm_ruby           = $puma::rvm_ruby,
   $restart_command    = $puma::restart_command,
   $on_restart         = false,
-  $puma_log_append    = false
+  $puma_log_append    = false,
+  $service_ensure     = running,
+  $service_enable     = true
 ) {
   $puma_pid_path        = sprintf($puma::puma_pid_path_spf, $app_name)
   $puma_pid_dir         = dirname($puma_pid_path)
@@ -103,8 +105,8 @@ define puma::app (
         mode    => '0755',
       }
       service { $app_name:
-        ensure  => running,
-        enable  => true,
+        ensure  => $service_ensure,
+        enable  => $service_enable,
         require => [
           File[$init_script],
           User[$puma_user],
@@ -124,8 +126,8 @@ define puma::app (
         mode    => '0644',
       }
       service { $app_name:
-        ensure  => running,
-        enable  => true,
+        ensure  => $service_ensure,
+        enable  => $service_enable,
         require => [
           User[$puma_user],
           File['systemd_config'],
