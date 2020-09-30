@@ -12,6 +12,9 @@ RuntimeDirectory=<%= @app_name %>
 PIDFile=<%= @puma_pid_path %>
 User=<%= @puma_user %>
 Group=<%= @puma_user %>
+<% if appsignal != "false" %>       
+Environment=APPSIGNAL_ENABLE_GC_INSTRUMENTATION=true
+<% end %>
 
 # The command to start puma
 ExecStart=<%= @app_root %>/shared/bin/start.sh
